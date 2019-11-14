@@ -1,0 +1,65 @@
+<?php $__env->startSection('content'); ?>
+
+
+    <!-- title-->
+    <h4 class="mt-0"><?php echo e(__('Sign In')); ?></h4>
+    <p class="text-muted mb-4"><?php echo e(__('Enter your username and password to access account.')); ?></p>
+
+    <!-- form -->
+    <form method="post" action="<?php echo e(route('login')); ?>">
+        <?php echo csrf_field(); ?>
+        <div class="form-group">
+            <label for="username"><?php echo e(__('Username')); ?></label>
+            <input class="form-control <?php if ($errors->has('username')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('username'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" type="text" name="username" id="username" value="<?php echo e(old('username')); ?>" required autocomplete="username" autofocus placeholder="<?php echo e(__('Enter Your Username')); ?>">
+            <?php if ($errors->has('username')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('username'); ?>
+            <span class="invalid-feedback" role="alert">
+                <strong><?php echo e($message); ?></strong>
+            </span>
+            <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+        </div>
+        <div class="form-group">
+            <a href="<?php echo e(route('password.request')); ?>" class="text-muted float-right"><small><?php echo e(__('Forgot your password?')); ?></small></a>
+            <label for="password"><?php echo e(__('Password')); ?></label>
+            <input class="form-control <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" type="password" name="password" required autocomplete="current-password" id="password" placeholder="<?php echo e(__('Enter Your Password')); ?>">
+            <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?>
+            <span class="invalid-feedback" role="alert">
+                <strong><?php echo e($message); ?></strong>
+            </span>
+            <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+        </div>
+        <div class="form-group mb-3">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="checkbox-signin" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
+                <label class="custom-control-label" for="checkbox-signin"><?php echo e(__('Remember Me')); ?></label>
+            </div>
+        </div>
+        <div class="form-group mb-0 text-center">
+            <button class="btn btn-primary btn-block" type="submit"><i class="mdi mdi-login"></i> <?php echo e(__('Log in')); ?> </button>
+        </div>
+    </form>
+    <!-- end form-->
+
+    <!-- Footer-->
+    <footer class="footer footer-alt">
+        <p class="text-muted"><?php echo e(__('Don\'t have an account?')); ?> <a href="<?php echo e(route('register')); ?>" class="text-muted ml-1"><b><?php echo e(__('Sign Up')); ?></b></a></p>
+    </footer>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\taskly\resources\views/auth/login.blade.php ENDPATH**/ ?>
